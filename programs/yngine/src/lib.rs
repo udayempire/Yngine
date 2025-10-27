@@ -3,7 +3,7 @@ use anchor_lang::prelude::*;
 declare_id!("3kLpfgTzRrMDANpQQ9gFnENqvFFQGyU7apooz426YWty");
 
 #[program]
-pub mod yingine {
+pub mod yngine {
     use super::*;
 
     pub fn initialize(ctx: Context<Initialize>) -> Result<()> {

@@ -6,7 +6,7 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-yingine = "3kLpfgTzRrMDANpQQ9gFnENqvFFQGyU7apooz426YWty"
+yngine = "3kLpfgTzRrMDANpQQ9gFnENqvFFQGyU7apooz426YWty"
 
 [registry]
 url = "https://api.apr.dev"
