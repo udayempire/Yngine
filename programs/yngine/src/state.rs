@@ -6,7 +6,7 @@ pub struct Vault {
     pub owner: Pubkey,
     pub ynsol_mint: Pubkey, 
     pub sol_balance: u64,
-    pub active_provider:Vec<Pubkey>,
+    pub active_provider:Pubkey,
     pub created_at: i64,
     pub bump: u8,
 }

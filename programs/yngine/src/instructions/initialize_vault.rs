@@ -9,7 +9,7 @@ pub struct InitializeVault<'info>{
         init,
         payer= authority,
         space= Vault::SIZE,
-        seeds=[b"vault",authority.key().as_ref()], //pda seeds
+        seeds=[b"vault"], //pda seeds //why
         bump
     )]
     pub vault: Account<'info,Vault>,
@@ -20,13 +20,10 @@ pub struct InitializeVault<'info>{
 
 pub fn initialize_vault(
     ctx:Context<InitializeVault>,
-    ynsol_mint: Pubkey,
-    active_provider:Vec<Pubkey>,
+    active_provider:Pubkey,
 )->Result<()>{
     let vault = &mut ctx.accounts.vault;
     vault.owner = ctx.accounts.authority.key();
-    vault.ynsol_mint = ynsol_mint;
-    vault.sol_balance = 0;
     vault.active_provider = active_provider;
     vault.created_at = Clock::get()?.unix_timestamp;
     vault.bump= ctx.bumps.vault;
