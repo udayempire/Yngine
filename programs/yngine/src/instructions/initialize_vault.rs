@@ -7,30 +7,28 @@ use crate::state::{Vault};
 pub struct InitializeVault<'info>{
     #[account(
         init,
-        payer= owner,
+        payer= authority,
         space= Vault::SIZE,
-        seeds=[b"vault",owner.key().as_ref()], //pda seeds
+        seeds=[b"vault",authority.key().as_ref()], //pda seeds
         bump
     )]
     pub vault: Account<'info,Vault>,
     #[account(mut)]
-    pub owner:Signer<'info>,
+    pub authority:Signer<'info>,
     pub system_program: Program<'info,System>
 }
 
 pub fn initialize_vault(
     ctx:Context<InitializeVault>,
     ynsol_mint: Pubkey,
-    sol_balance: u64,
-    active_provider:u16,
-    created_at: u8,
+    active_provider:Vec<Pubkey>,
 )->Result<()>{
     let vault = &mut ctx.accounts.vault;
-    vault.owner = ctx.accounts.owner.key();
+    vault.owner = ctx.accounts.authority.key();
     vault.ynsol_mint = ynsol_mint;
-    vault.sol_balance = sol_balance;
+    vault.sol_balance = 0;
     vault.active_provider = active_provider;
-    vault.created_at = created_at;
+    vault.created_at = Clock::get()?.unix_timestamp;
     vault.bump= ctx.bumps.vault;
     Ok(())
 }
