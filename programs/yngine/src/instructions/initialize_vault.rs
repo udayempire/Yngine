@@ -9,7 +9,7 @@ pub struct InitializeVault<'info>{
         init,
         payer= authority,
         space= Vault::SIZE,
-        seeds=[b"vault"], //pda seeds //why
+        seeds=[b"vault"], 
         bump
     )]
     pub vault: Account<'info,Vault>,
