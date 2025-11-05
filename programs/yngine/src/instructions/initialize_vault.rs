@@ -23,7 +23,7 @@ pub fn initialize_vault(
     active_provider:Pubkey,
 )->Result<()>{
     let vault = &mut ctx.accounts.vault;
-    vault.owner = ctx.accounts.authority.key();
+    vault.authority = ctx.accounts.authority.key();
     vault.active_provider = active_provider;
     vault.created_at = Clock::get()?.unix_timestamp;
     vault.bump= ctx.bumps.vault;
