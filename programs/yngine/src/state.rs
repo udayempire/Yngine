@@ -4,6 +4,8 @@ use anchor_lang::prelude::*;
 pub struct Vault {
     pub authority: Pubkey,
     pub ynsol_mint: Pubkey, 
+    pub total_shares: u64,
+    pub vault_balance: u64,
     pub sol_balance: u64,
     pub active_provider:Pubkey,
     pub created_at: i64,
@@ -17,8 +19,8 @@ impl Vault {
 #[account]
 pub struct User {
     pub owner: Pubkey,
-    pub deposited_sol:u64,
-    pub withdrawn_sol: u64,
+    pub total_deposited:u64,
+    pub total_withdrawn: u64,
     pub created_at: i64,
     pub bump: u8,
 }
